@@ -42,7 +42,7 @@ exports.findOne = (req, res) => {
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Customer with id " + req.params.id,
+          message: "Error retrieving locataire with id " + req.params.id,
         });
       }
     } else res.send(data);
@@ -83,6 +83,10 @@ exports.delete = (req, res) => {
           message: "Could not delete Locataire with id " + req.params.id,
         });
       }
-    } else res.send({ message: `Locataire was deleted successfully!` });
+    } else
+      res.send({
+        message: `Locataire was deleted successfully!`,
+        idDelected: data,
+      });
   });
 };

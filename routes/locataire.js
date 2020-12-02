@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const locataire = require("../controller/locataire");
+const locataire = require("../controllers/locataire");
 
 router.get("/", locataire.findAll);
 router.post("/", locataire.create);
