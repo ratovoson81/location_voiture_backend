@@ -13,7 +13,6 @@ Voiture.getAll = (result) => {
       result(null, err);
       return;
     }
-    console.log("voiture: ", res);
     result(null, res);
   });
 };
@@ -26,7 +25,6 @@ Voiture.create = (newVoiture, result) => {
       return;
     }
 
-    console.log("created voiture: ", { id: res.insertId, ...newVoiture });
     result(null, { id: res.insertId, ...newVoiture });
   });
 };
@@ -40,7 +38,6 @@ Voiture.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found voiture: ", res[0]);
       result(null, res[0]);
       return;
     }
@@ -65,7 +62,6 @@ Voiture.updateById = (id, voiture, result) => {
         return;
       }
 
-      console.log("updated voiture: ", { id: id, ...voiture });
       result(null, { id: id, ...voiture });
     }
   );
@@ -84,7 +80,6 @@ Voiture.remove = (id, result) => {
       return;
     }
 
-    console.log("deleted voiture with id: ", id);
     result(null, id);
   });
 };
@@ -98,7 +93,6 @@ Voiture.searchByDesignation = (nom, result) => {
         result(null, err);
         return;
       }
-      console.log("voiture: ", res);
       result(null, res);
     }
   );
