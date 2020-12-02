@@ -1,4 +1,4 @@
-import db from "../db";
+const db = require("../../config/db");
 
 const getAll = `SELECT lo.idLouer, lo.nbJour, lo.date, 
   lc.idLocataire, lc.nom, lc.adresse, 

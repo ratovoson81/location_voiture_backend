@@ -1,4 +1,4 @@
-import db from "../db";
+const db = require("../../config/db");
 
 const Locataire = function (locataire) {
   this.idLocataire = locataire.idLocataire;

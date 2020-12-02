@@ -1,4 +1,4 @@
-import db from "../db";
+const db = require("../../config/db");
 
 const Effectif = function (effectif) {
   this.designation = effectif.designation;
