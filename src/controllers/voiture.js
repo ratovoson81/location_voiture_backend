@@ -91,17 +91,35 @@ exports.delete = (req, res) => {
 };
 
 exports.search = (req, res) => {
-  if (!req.params) {
+  console.log(typeof req.body.search);
+  if (!req.body.search) {
     res.status(400).send({
       message: "Le contenu ne peut pas etre vide!",
     });
   }
 
-  Voiture.searchByDesignation(req.params.nom, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving Voiture.",
-      });
-    else res.send(data);
-  });
+  if (typeof req.body.search === "string") {
+    Voiture.searchByDesignation(req.body.search, (err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving Voiture.",
+        });
+      else res.send(data);
+    });
+  } else {
+    Voiture.findById(req.body.search, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found Voiture with id ${req.body.search}.`,
+          });
+        } else {
+          res.status(500).send({
+            message: "Error retrieving Voiture with id " + req.body.search,
+          });
+        }
+      } else res.send(data);
+    });
+  }
 };

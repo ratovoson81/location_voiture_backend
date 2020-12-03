@@ -5,9 +5,9 @@ const voiture = require("../controllers/voiture");
 
 router.get("/", voiture.findAll);
 router.post("/", voiture.create);
-router.get("/:id", voiture.findOne);
+router.get("/find/:id", voiture.findOne);
 router.put("/:id", voiture.update);
 router.delete("/:id", voiture.delete);
-router.get("/search/:nom", voiture.search);
+router.get("/search", voiture.search);
 
 module.exports = router;
