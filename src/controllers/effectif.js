@@ -1,12 +1,12 @@
 const Effectif = require("../models/effectif");
 
 exports.getEffectif = (req, res) => {
-  if (!req.body) {
+  if (!req.params) {
     res.status(400).send({
       message: "Le contenu ne peut pas etre vide!",
     });
   }
-  let values = [req.body.dateDebut, req.body.dateFin];
+  let values = [req.params.dateDebut, req.params.dateFin];
 
   Effectif.getEffectif(values, (err, data) => {
     if (err)

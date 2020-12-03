@@ -33,19 +33,7 @@ exports.create = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  Voiture.findById(req.params.id, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found Voiture with id ${req.params.id}.`,
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving Voiture with id " + req.params.id,
-        });
-      }
-    } else res.send(data);
-  });
+  findById(req.params.id, res);
 };
 
 exports.update = (req, res) => {
@@ -98,7 +86,7 @@ exports.search = (req, res) => {
     });
   }
 
-  if (typeof req.body.search === "string") {
+  if (!parseInt(search)) {
     Voiture.searchByDesignation(search, (err, data) => {
       if (err)
         res.status(500).send({
@@ -108,18 +96,22 @@ exports.search = (req, res) => {
       else res.send(data);
     });
   } else {
-    Voiture.findById(search, (err, data) => {
-      if (err) {
-        if (err.kind === "not_found") {
-          res.status(404).send({
-            message: `Not found Voiture with id ${search}.`,
-          });
-        } else {
-          res.status(500).send({
-            message: "Error retrieving Voiture with id " + search,
-          });
-        }
-      } else res.send(data);
-    });
+    findById(search, res);
   }
 };
+
+function findById(id, res) {
+  Voiture.findById(id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Voiture with id ${id}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Voiture with id " + id,
+        });
+      }
+    } else res.send(data);
+  });
+}
