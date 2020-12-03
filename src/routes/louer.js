@@ -9,7 +9,7 @@ router.get("/:id", louer.findOne);
 router.put("/:id", louer.update);
 router.delete("/:id", louer.delete);
 router.get(
-  "/locataire-voiture/:id/:dateDebut:/dateFin",
+  "/locataire-voiture/:id/:dateDebut/:dateFin",
   louer.effLocataireVoiture
 );
 

@@ -85,18 +85,19 @@ exports.delete = (req, res) => {
 };
 
 exports.effLocataireVoiture = (req, res) => {
-  if (!req.params) {
+  if (!req.body) {
     res.status(400).send({
       message: "Le contenu ne peut pas etre vide!",
     });
   }
-
   const data = [req.params.id, req.params.dateDebut, req.params.dateFin];
 
   Louer.effLocataireVoiture(data, (err, data) => {
     if (err)
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the Louer.",
+        message:
+          err.message ||
+          "Some error occurred while retrieving effLocataireVoiture.",
       });
     else res.send(data);
   });
