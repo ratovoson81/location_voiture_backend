@@ -85,13 +85,13 @@ exports.delete = (req, res) => {
 };
 
 exports.effLocataireVoiture = (req, res) => {
-  if (!req.body) {
+  if (!req.params) {
     res.status(400).send({
       message: "Le contenu ne peut pas etre vide!",
     });
   }
 
-  const data = [req.params.id, req.body.dateDebut, req.body.dateFin];
+  const data = [req.params.id, req.params.dateDebut, req.params.dateFin];
 
   Louer.effLocataireVoiture(data, (err, data) => {
     if (err)

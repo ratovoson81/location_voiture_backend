@@ -8,6 +8,9 @@ router.post("/", louer.create);
 router.get("/:id", louer.findOne);
 router.put("/:id", louer.update);
 router.delete("/:id", louer.delete);
-router.get("/locataire-voiture/:id", louer.effLocataireVoiture);
+router.get(
+  "/locataire-voiture/:id/:dateDebut:/dateFin",
+  louer.effLocataireVoiture
+);
 
 module.exports = router;

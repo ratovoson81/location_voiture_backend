@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/locataire", locataireRouter);
 app.use("/voiture", voitureRouter);
-app.use("/louer", louerRouter);
+app.use("/location", louerRouter);
 app.use("/effectif", effectifRouter);
 
 app.listen(4000, () => console.log(`Server started at http://localhost:4000`));

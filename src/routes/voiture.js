@@ -8,6 +8,6 @@ router.post("/", voiture.create);
 router.get("/find/:id", voiture.findOne);
 router.put("/:id", voiture.update);
 router.delete("/:id", voiture.delete);
-router.get("/search", voiture.search);
+router.get("/search/:search", voiture.search);
 
 module.exports = router;

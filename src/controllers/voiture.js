@@ -91,15 +91,15 @@ exports.delete = (req, res) => {
 };
 
 exports.search = (req, res) => {
-  console.log(typeof req.body.search);
-  if (!req.body.search) {
+  const search = req.params.search;
+  if (!search) {
     res.status(400).send({
       message: "Le contenu ne peut pas etre vide!",
     });
   }
 
   if (typeof req.body.search === "string") {
-    Voiture.searchByDesignation(req.body.search, (err, data) => {
+    Voiture.searchByDesignation(search, (err, data) => {
       if (err)
         res.status(500).send({
           message:
@@ -108,15 +108,15 @@ exports.search = (req, res) => {
       else res.send(data);
     });
   } else {
-    Voiture.findById(req.body.search, (err, data) => {
+    Voiture.findById(search, (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Voiture with id ${req.body.search}.`,
+            message: `Not found Voiture with id ${search}.`,
           });
         } else {
           res.status(500).send({
-            message: "Error retrieving Voiture with id " + req.body.search,
+            message: "Error retrieving Voiture with id " + search,
           });
         }
       } else res.send(data);

@@ -41,7 +41,6 @@ Locataire.findById = (id, result) => {
       result(null, res[0]);
       return;
     }
-
     result({ kind: "not_found" }, null);
   });
 };
