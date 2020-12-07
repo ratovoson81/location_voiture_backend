@@ -30,10 +30,10 @@ Louer.getAll = (result) => {
   });
 };
 
-Louer.create = (newLouer, result) => {
+Louer.create = (louer, result) => {
   db.query(
-    "INSERT INTO louer(locataire_id, voiture_id, nbJour, date ) VALUES (?)",
-    [newLouer],
+    "INSERT INTO louer SET locataire_id = ?, voiture_id = ?, nbJour = ?, date = ?",
+    [louer.locataire_id, louer.voiture_id, louer.nbJour, louer.date],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -41,7 +41,7 @@ Louer.create = (newLouer, result) => {
         return;
       }
 
-      result(null, { id: res.insertId, ...newLouer });
+      result(null, { id: res.insertId, ...louer });
     }
   );
 };
